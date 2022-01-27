@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block title %}login {% endblock %}
+
+{% block content %}
+<div style="padding-left: 3em;background-color: cadetblue;padding-top: 2em;padding-bottom: 3em;">
+    <center>
+<h1> Login form </h1>
+
+<form action="" method ="POST" style="color: white;">
+    {% csrf_token %}
+    <label> Username </label>
+    <input type="text" name="username" required placeholder="username"><br>
+    <label > Password</label>
+    <input type="password" name="password" required placeholder="password" style="margin-top: 1em;"><br>
+    <input type="submit" value="LOGIN" style="margin-top: 1em;">
+</form>
+</center>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+    
+    {% if events %}
+    <center>
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              
+              <th scope="col" style="padding-left: 1em;">Event name</th>
+              <th scope="col" style="padding-left:1em">Date</th>
+              <th scope="col" style="padding-left:1em">Area</th>
+              <th scope="col" style="padding-left:1em">Time</th>
+              <th scope="col" style="padding-left:1em">description</th>
+              <th scope="col" style="padding-left:1em">Fee</th>
+              
+              <th scope="col" style="padding-left:1em">Register Event</th>
+              
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in events %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.event_name}}</td>
+              <td style="padding-left: 1em;">{{i.event_date}}</td>
+              <td style="padding-left: 1em;">{{ i.event_area}}</td>
+              <td style="padding-left: 1em;">{{ i.event_time}}</td>
+              <td style="padding-left: 1em;">{{ i.description}}</td>
+              <td style="padding-left: 1em;">{{ i.fee}}</td>
+             
+              <td style="padding-left: 1em;"><a href="{% url 'register_event' i.id %}">Add</a></td>
+             
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No Events can be found...</span>
+    {% endif %}
+
+</div>
+<!-- /TABLE -->
+
+{% endblock %}

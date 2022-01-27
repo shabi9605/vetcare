@@ -1,0 +1,61 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+    
+    {% if users %}
+    <center>
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col">User Name</th>
+              <th scope="col" style="padding-left: 1em;">First Name</th>
+              <th scope="col" style="padding-left:1em">Last Name</th>
+              <th scope="col" style="padding-left:1em">Email</th>
+              <th scope="col" style="padding-left:1em">Address</th>
+
+              <th scope="col" style="padding-left:1em">Phone</th>
+              {% if user.is_superuser %}
+              <th scope="col" style="padding-left:1em">Delete</th>
+              {% endif %}
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in users %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.user.username}}</td>
+              <td style="padding-left: 1em;">{{ i.user.first_name}}</td>
+              <td style="padding-left: 1em;">{{ i.user.last_name}}</td>
+              <td style="padding-left: 1em;">{{ i.user.email}}</td>
+              <td style="padding-left: 1em;">{{ i.address}}</td>
+              <td style="padding-left: 1em;">{{ i.phone}}</td>
+              {% if user.is_superuser %}
+              <td style="padding-left: 1em;"><a href="{% url 'delete_user' i.id %}">Delete</a></td>
+              {% endif %}
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No Doctors can be found...</span>
+    {% endif %}
+
+</div>
+<!-- /TABLE -->
+
+{% endblock %}

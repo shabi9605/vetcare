@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+    
+    {% if consultation %}
+    <center>
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              
+              <th scope="col" style="padding-left: 1em;">Symptom</th>
+              <th scope="col" style="padding-left:1em">Description</th>
+              <th scope="col" style="padding-left:1em">Amount</th>
+              
+              
+              <th scope="col" style="padding-left:1em">PAY</th>
+              
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in consultation %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.symptom}}</td>
+              
+              <td style="padding-left: 1em;">{{ i.description}}</td>
+              <td style="padding-left: 1em;">{{ i.amount}}</td>
+              
+             
+              <td style="padding-left: 1em;"><a href="{% url 'payment:payment2' i.id %}">Pay</a></td>
+             
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No Fertilizer can be found...</span>
+    {% endif %}
+
+</div>
+<!-- /TABLE -->
+
+{% endblock %}

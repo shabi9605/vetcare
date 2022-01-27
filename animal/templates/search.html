@@ -1,0 +1,194 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div>
+
+    <form action="" method="GET"> 
+        {% csrf_token %}
+        <label for="">Location</label>
+        <input type="text" name='location'>
+       
+        <input type="submit" value='SEARCH'>
+    
+    </form>
+</div>
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+  <center>  <h1>Fertilizers</h1></center>
+    {% if fertilizer %}
+    <center>
+       
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col"> Name</th>
+              <th scope="col" style="padding-left: 1em;">Quantity</th>
+              <th scope="col" style="padding-left:1em">Description</th>
+              <th scope="col" style="padding-left:1em">Amount</th>
+              <th scope="col" style="padding-left:1em">Buy</th>
+              {% if user.is_superuser %}
+              <th scope="col" style="padding-left:1em">Update</th>
+              <th scope="col" style="padding-left:1em">Delete</th>
+              {% endif %}
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in fertilizer %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.fertilizer_name}}</td>
+              <td style="padding-left: 1em;">{{ i.quantity}}</td>
+              <td style="padding-left: 1em;">{{ i.description}}</td>
+              <td style="padding-left: 1em;">{{ i.amount}}</td>
+              <td style="padding-left: 1em;"><a href="{% url 'payment:payment2' i.id %}">Buy</a></td>
+              {% if user.is_superuser %}
+              <td style="padding-left: 1em;"><a href="{% url 'update_fertilizer_products' i.id %}">Update</a></td>
+              <td style="padding-left: 1em;"><a href="{% url 'delete_fertilizer_products' i.id %}">Delete</a></td>
+              {% endif %}
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No Fertilizer can be found...</span>
+    {% endif %}
+
+</div>
+
+
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+    <center><h1>Foods</h1></center>
+    {% if food %}
+    <center>
+        
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col"> Name</th>
+              <th scope="col" style="padding-left: 1em;">Quantity</th>
+              <th scope="col" style="padding-left:1em">Description</th>
+              <th scope="col" style="padding-left:1em">Amount</th>
+              <th scope="col" style="padding-left:1em">Buy</th>
+              {% if user.is_superuser %}
+              <th scope="col" style="padding-left:1em">Update</th>
+              <th scope="col" style="padding-left:1em">Delete</th>
+              {% endif %}
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in food %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.food_name}}</td>
+              <td style="padding-left: 1em;">{{ i.quantity}}</td>
+              <td style="padding-left: 1em;">{{ i.description}}</td>
+              <td style="padding-left: 1em;">{{ i.amount}}</td>
+              <td style="padding-left: 1em;"><a href="{% url 'payment:payment2' i.id %}">Buy</a></td>
+              {% if user.is_superuser %}
+              <td style="padding-left: 1em;"><a href="{% url 'update_food_products' i.id %}">Update</a></td>
+              <td style="padding-left: 1em;"><a href="{% url 'delete_food_products' i.id %}">Delete</a></td>
+              {% endif %}
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No food can be found...</span>
+    {% endif %}
+
+</div>
+
+
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+   <center> <h1>Animals</h1></center>
+    {% if animal %}
+    <center>
+        <h1>Animals</h1>
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col">Seller Name</th>
+              <th scope="col">Name</th>
+              <th scope="col" style="padding-left:1em">Color</th>
+              <th scope="col" style="padding-left:1em">Gender</th>
+              <th scope="col">year</th>
+              <th scope="col">Photo</th>
+              <th scope="col">animal Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Submitted Date</th>
+              <th scope="col">Buy</th>
+              <th scope="col" style="padding-left:1em">Status</th>
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in animal %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.user.username}}</td>
+              <td>{{ i.name}}</td>
+              <td style="padding-left: 1em;">{{ i.color}}</td>
+              <td style="padding-left:1em">{{ i.sex}}</td>
+              <td style="padding-left:1em">{{ i.year }}</td>
+              <td><a href="{{i.photo.url}}"><img src="{{i.photo.url}}" alt="" style="height: 150px;"></a></td>
+              <td style="padding-left:1em">{{ i.animal_type }}</td>
+              <td>{{ i.description }}</td>
+              <td style="padding-left:1em">{{ i.price }}</td>
+              <td style="padding-left:1em">{{ i.date }}</td>
+              <td style="padding-left:1em"><a href="{% url 'payment:payment' i.id %}">Buy</a></td>
+              {% if i.paid == True %}
+              <td style="padding-left:1em">Selled</td>
+              {% else %}
+              <td style="padding-left:1em">Not Paid</td>
+              {% endif %}
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No animal can be found...</span>
+    {% endif %}
+
+</div>
+<!-- /TABLE -->
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div style="background-color: wheat;padding-top: 3em;padding-bottom: 3em;padding-left: 2em;">
+
+<h1>{{user.username}}</h1>
+
+<a href="{% url 'view_animal' %}"><button style="background-color: rgb(46 133 68);color: white;">View Animal Details</button></a>
+<a href="{% url 'add_animal' %}"><button style="background-color: rgb(46 133 68);color: white;">Sell Animal</button></a>
+<a href="{% url 'view_doctors' %}"><button style="background-color: rgb(46 133 68);color: white;">View Consulting Doctors</button></a>
+<a href="{% url 'review' %}"><button style="background-color: rgb(46 133 68);color: white;">Make Review</button></a>
+
+</div>
+
+
+{% endblock %}

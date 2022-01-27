@@ -1,0 +1,33 @@
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="padding-left: 2rem;padding-top: 2rem;padding-bottom: 1em;background-color: #c9c1b1;">
+
+    <h2>Review Form</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{review_form|crispy}}
+        
+        
+        <input type="submit" value="SEND" style="background-color: #3e36c3;color: white;margin-top: 1em;">
+
+    </form>
+</div>
+
+<div style="background-color: burlywood;padding-bottom: 2em;padding-top: 2em;padding-left: 3em;">
+    {% for i in review %}
+<div class="card" style="width: 18rem;" >
+    <div class="card-body" style="margin-bottom: 1em;background-color: cadetblue;padding-top: 1em;padding-left: 1em;">
+      <h5 class="card-title">Username:{{i.user.username}}</h5>
+      
+      <p class="card-text">Content: {{i.content}}</p>
+      <p class="card-text">Date: {{i.date}}</p>
+      
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

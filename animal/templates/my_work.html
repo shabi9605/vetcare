@@ -1,0 +1,59 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;padding-top: 2em;padding-bottom: 2em;">
+    
+    {% if symptom %}
+    <center>
+    <table class="table" style="font-size: 20px;color: black;">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              
+              <th scope="col" style="padding-left: 1em;">Doctor</th>
+              <th scope="col" style="padding-left:1em">Video</th>
+              <th scope="col" style="padding-left:1em">Description</th>
+              <th scope="col" style="padding-left:1em">Animal Name</th>
+              <th scope="col" style="padding-left:1em">Animal Type</th>
+              
+              <th scope="col" style="padding-left:1em">Add Consultation</th>
+              
+
+              
+
+            </tr>
+          </thead>
+          <tbody style="margin-top: 1em;">
+              {% for i in symptom %}
+            <tr style="background-color: #d9a3a3;margin-top: 2em;padding-bottom: 2em;border:2px solid black;" >
+                <td>{{ i.doctor}}</td>
+              <td style="padding-left: 1em;"><a href="{{i.video.url}}">video</a></td>
+              <td style="padding-left: 1em;">{{ i.description}}</td>
+              <td style="padding-left: 1em;">{{ i.animal_name}}</td>
+              <td style="padding-left: 1em;">{{ i.animal_type}}</td>
+             
+              <td style="padding-left: 1em;"><a href="{% url 'add_consultation' i.id %}">Add</a></td>
+             
+              
+
+             
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+</center>
+    {% else %}
+
+    <span>No Fertilizer can be found...</span>
+    {% endif %}
+
+</div>
+<!-- /TABLE -->
+
+{% endblock %}
